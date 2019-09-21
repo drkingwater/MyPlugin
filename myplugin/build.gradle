@@ -1,0 +1,32 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+dependencies {
+    //gradle sdk
+    implementation gradleApi()
+    //groovy sdk
+    implementation localGroovy()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+
+            groupId 'com.pxq.plugin'
+            artifactId 'myplugin'
+            version '1.0.1'
+
+            from components.java
+
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url uri('../repos')
+        }
+    }
+}
